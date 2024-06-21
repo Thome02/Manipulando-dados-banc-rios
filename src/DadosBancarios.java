@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import projeto.DadosDoCliente;
 public class DadosBancarios {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double saldo = 2500;
+        DadosDoCliente dadosD = new DadosDoCliente();
         System.out.println("""
        *******************************************
        |  nome:                 IGOR ROSA        |
@@ -22,10 +23,10 @@ public class DadosBancarios {
         4- Sair
         Digite a opção desejada:
         """);
-        int oqFazer = scanner.nextInt();    
-        while (oqFazer != 4) {
-            if (oqFazer == 1) {
-                System.out.println("O saldo atual é de R$ " + saldo);
+        dadosD.setOqFazer(scanner.nextInt());    
+        while (dadosD.getOqFazer() != 4) {
+            if (dadosD.getOqFazer() == 1) {
+                System.out.println("O saldo atual é de R$ " + dadosD.getSaldo());
                 System.out.println("""
 
 
@@ -35,15 +36,15 @@ public class DadosBancarios {
                 4- Sair
                 Digite a opção desejada:""");
                 
-                oqFazer = scanner.nextInt();    
+                dadosD.setOqFazer(scanner.nextInt());
             
             }
-            else if (oqFazer == 2) {
+            else if (dadosD.getOqFazer() == 2) {
                 System.out.println("Informe o valor a Receber:");
-                double valorReceber = scanner.nextDouble();
-                saldo = saldo + valorReceber;
+                dadosD.setValorReceber(scanner.nextDouble());
+                dadosD.Receber();
                 System.out.println("");
-                System.out.println("O seu Saldo é: " + saldo);
+                System.out.println("O seu Saldo é: " + dadosD.getSaldo());
                 System.out.println("""
 
 
@@ -53,22 +54,22 @@ public class DadosBancarios {
                 4- Sair
                 Digite a opção desejada:""");
                 
-                oqFazer = scanner.nextInt();  
+                dadosD.setOqFazer(scanner.nextInt());  
             }
-            else if (oqFazer == 3) {
+            else if (dadosD.getOqFazer() == 3) {
                 System.out.println("Informe o valor que deseja transferir:");
                 System.out.println("""
                     """);
-                double valorTransferir = scanner.nextDouble();
-                if (saldo < valorTransferir) {
+                dadosD.setValorTransferir(scanner.nextDouble());
+                if (dadosD.getSaldo() < dadosD.getValorTransferir() ) {
                     System.out.println("O valor que vc esta tentando transferir é maior que o seu saldo");
                 }
-                else if (valorTransferir == 0) {
+                else if (dadosD.getValorTransferir() == 0) {
                 System.out.println("Não é possivel realizar uma transação de R$ 0");
                 } 
                 else {
-                    saldo = saldo - valorTransferir;
-                    System.out.println("Saldo atualizado, vc retirou R$" + valorTransferir + " e agora seu saldo é de: R$" + saldo);
+                    dadosD.transacao();
+                    System.out.println("Saldo atualizado, vc retirou R$" + dadosD.getValorTransferir() + " e agora seu saldo é de: R$" + dadosD.getSaldo());
                 }
                 System.out.println("""
 
@@ -79,9 +80,9 @@ public class DadosBancarios {
                 4- Sair
                 Digite a opção desejada:""");
                 
-                oqFazer = scanner.nextInt();  
+                dadosD.setOqFazer(scanner.nextInt());  
             }
-            else if (oqFazer == 4) {
+            else if (dadosD.getOqFazer() == 4) {
                 
             }
         }
